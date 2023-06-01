@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "638253020569",
+    "firebase_url": "https://modern-auth-95cc9-default-rtdb.firebaseio.com",
+    "project_id": "modern-auth-95cc9",
+    "storage_bucket": "modern-auth-95cc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638253020569:android:e214577947eecde7e3cf08",
+        "android_client_info": {
+          "package_name": "com.example.modern_authentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB0kTUJk9gr_sNa5vOeRTagTJVfsJoRys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
