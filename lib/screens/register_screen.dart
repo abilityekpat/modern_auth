@@ -6,29 +6,31 @@ import 'package:modern_authentication/widgets/my_button.dart';
 import 'package:modern_authentication/widgets/my_textfield.dart';
 import 'package:modern_authentication/widgets/square_tile.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  final fullnamecontroller = TextEditingController();
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
+  final comfirmpasswordcontroller = TextEditingController();
   final AuthService _authService = AuthService();
   bool isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
 
   //sign in user
-  signUser() async {
+  signUserUp() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         isLoading = true;
       });
 
-      bool result = await _authService.signInWithEmailAndPassword(
+      bool result = await _authService.createUserWithEmailAndPassword(
           emailcontroller.text, passwordcontroller.text);
 
       setState(() {
@@ -64,13 +66,13 @@ class _LoginPageState extends State<LoginPage> {
                         //logo
                         const Icon(
                           Icons.lock,
-                          size: 100,
+                          size: 50,
                         ),
                         const SizedBox(height: 30),
 
                         //welcome back you've been missed
                         Text(
-                          "Welcome back you've been missed",
+                          "Welcome, Let's create an account for you",
                           style: TextStyle(
                             color: Colors.grey.shade700,
                             fontSize: 16,
@@ -78,7 +80,22 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 25),
 
-                        //username textfield
+                        //usernmae Textfield
+                        MyTextField(
+                          controller: emailcontroller,
+                          hintText: "Full Name",
+                          obscureText: false,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your email';
+                            }
+                            return null;
+                          },
+                        ),
+
+                        const SizedBox(height: 10),
+
+                        //email textfield
                         MyTextField(
                           controller: emailcontroller,
                           hintText: "Email",
@@ -90,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                             return null;
                           },
                         ),
+
                         const SizedBox(height: 10),
 
                         //password textfield
@@ -104,8 +122,23 @@ class _LoginPageState extends State<LoginPage> {
                             return null;
                           },
                         ),
+
                         SizedBox(height: 10),
 
+                        //comfirm password textfield
+
+                        MyTextField(
+                          controller: passwordcontroller,
+                          hintText: "Comfirm Password",
+                          obscureText: true,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your password';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 10),
                         //forgot passeord
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 25),
@@ -123,8 +156,8 @@ class _LoginPageState extends State<LoginPage> {
 
                         //sign in button
                         MyButton(
-                          onTap: signUser,
-                          buttonText: "Sign In",
+                          onTap: signUserUp,
+                          buttonText: "Sign Up",
                         ),
 
                         const SizedBox(height: 50),

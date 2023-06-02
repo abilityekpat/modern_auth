@@ -15,4 +15,16 @@ class AuthService {
     }
     return false;
   }
+
+  Future<bool> createUserWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      dynamic User = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return true;
+    } catch (e) {
+      Toast.errorToast(e.toString());
+    }
+    return false;
+  }
 }
