@@ -1,17 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:modern_authentication/show_modal.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-
-  final user = FirebaseAuth.instance.signOut();
-
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +10,10 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: signUserOut,
-            icon: const Icon(
+            onPressed: () {
+              showMyDialog(context);
+            },
+            icon: Icon(
               Icons.logout,
             ),
           )
